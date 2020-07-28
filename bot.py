@@ -67,6 +67,7 @@ async def startReminders(channel):
         for t1 in times:
             for t2 in t1:
                 if (t2['time'].minute == time.minute and t2['time'].hour == time.hour):
+                    print("wut")
                     role = discord.utils.find(lambda r : r.name == t2['role'], guild.roles)
                     await channel.send(role.mention+" Guerrilla event has started")
                     break
