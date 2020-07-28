@@ -136,10 +136,10 @@ async def send_listeners_message(context):
 async def hello(message):
     """
     guild = client.guilds[0]
-    role = discord.utils.find(lambda r : r.name == "Guerrilla 1", guild.roles)
-    channel = message.channel"""
+    role = discord.utils.find(lambda r : r.name == "Guerrilla 1", guild.roles)"""
+    channel = message.channel
     for i in range (0,3):
-        await channel.send("Hello "+role.mention)
+        await channel.send("Hello")
         await asyncio.sleep(2)
 
 @client.command()
