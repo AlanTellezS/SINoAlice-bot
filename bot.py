@@ -104,12 +104,9 @@ async def on_raw_reaction_add(payload):
                 if (payload.emoji.name == emoji["name"]):
                     rolename = listener["base_rolename"] + emoji["value"]
                     guild = client.guilds[0]
-                    print(rolename)
                     role = discord.utils.find(lambda r : r.name == rolename, guild.roles)
-                    print(role.name)
                     member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
                     await member.add_roles(role)
-                    print("Role added")
 
 @client.event
 async def on_raw_reaction_remove(payload):
@@ -119,9 +116,7 @@ async def on_raw_reaction_remove(payload):
                 if (payload.emoji.name == emoji["name"]):
                     rolename = listener["base_rolename"] + emoji["value"]
                     guild = client.guilds[0]
-                    print(rolename)
                     role = discord.utils.find(lambda r : r.name == rolename, guild.roles)
-                    print(role.name)
                     member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
                     await member.remove_roles(role)
 
