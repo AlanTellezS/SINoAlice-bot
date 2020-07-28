@@ -32,8 +32,8 @@ listeners = [
             {'name':"5️⃣", 'value':"5"},
             {'name':"6️⃣", 'value':"6"}
         ],
-        'message': """If you want to get notified when Guerilla goes live, use one or more of the reactions to this message. 
-            The reactions relate to the following timeslots (UTC) of the Events:\n""",
+        'message': "If you want to get notified when Guerilla goes live, use one or more of the reactions to this message.n" +
+            "The reactions relate to the following timeslots (UTC) of the Events:\n",
         'times':[
             {'time':datetime(2020, 1, 1, 0, 30), 'role':"Guerrilla 1"},
             {'time':datetime(2020, 1, 1, 2, 30), 'role':"Guerrilla 2"},
@@ -51,8 +51,8 @@ listeners = [
             {'name':"2️⃣", 'value':"2"},
             {'name':"3️⃣", 'value':"3"}
         ],
-        'message': """If you want to get notified when Conquest goes live, use one or more of the reactions to this message. 
-            The reactions relate to the following timeslots (UTC) of the Events:\n""",
+        'message': "If you want to get notified when Conquest goes live, use one or more of the reactions to this message.\n" +
+            "The reactions relate to the following timeslots (UTC) of the Events:\n",
         'times':[ 
             {'time':datetime(2020, 1, 1, 1, 30), 'role':"Conquest 1"},
             {'time':datetime(2020, 1, 1, 3, 30), 'role':"Conquest 2"},
@@ -68,8 +68,8 @@ listeners = [
         'emojis_allowed':[
             {'name':"1️⃣", 'value':"Colosseum"}
         ],
-        'message': """If you want to get notified when Colosseum goes live, use one or more of the reactions to this message.
-            The reactions relate to the following timeslots (UTC) of the Events:\n""",
+        'message': "If you want to get notified when Colosseum goes live, use one or more of the reactions to this message.\n"+
+        "The reactions relate to the following timeslots (UTC) of the Events:\n",
         'times':[
             {'time':datetime(2020, 1, 1, 18, 50, 0), 'role':"Colosseum"}
         ]
