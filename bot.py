@@ -124,7 +124,7 @@ async def send_listeners_message(context):
         times = listener['times']
         msg = listener['message']
         for i in range(len(emojis)):
-            msg = msg + emojis[i]['name'] + " " + str(times[i]['time'].hour) + ":" + str(times[i]['time'].minute) + "\n"
+            msg = msg + emojis[i]['name'] + " " + str(times[i]['time'].hour).rjust(2, "0") + ":" + str(times[i]['time'].minute).rjust(2, "0") + "\n"
         message = await context.send(msg)
         for emoji in listener['emojis_allowed']:
             await message.add_reaction(emoji["name"])
