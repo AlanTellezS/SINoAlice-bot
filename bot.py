@@ -24,7 +24,7 @@ times = [
         {'time':datetime(2020, 1, 1, 0, 30), 'role':"Conquest 6"}
     ],
     [
-        {'time':datetime(2020, 1, 1, 21, 50), 'role':"Guerrilla 1"}
+        {'time':datetime(2020, 1, 1, 20, 55), 'role':"Guerrilla 1"}
     ]
 ]
 
@@ -64,6 +64,7 @@ async def startReminders(channel):
     await channel.send("Reminders started")
     while True:
         time = datetime.utcnow()
+        print(datetime.minute)
         for t1 in times:
             for t2 in t1:
                 if (t2['time'].minute == time.minute and t2['time'].hour == time.hour):
