@@ -126,7 +126,7 @@ async def send_listeners_message(context):
         for i in range(len(emojis)):
             msg = msg + emojis[i]['name'] + " " + str(times[i]['time'].hour) + ":" + str(times[i]['time'].minute) + "\n"
         message = await context.send(msg)
-        for emoji in listeners[timers.Guerrilla.value]['emojis_allowed']:
+        for emoji in listener['emojis_allowed']:
             await message.add_reaction(emoji["name"])
 
 @client.command()
