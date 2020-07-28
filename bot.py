@@ -24,7 +24,7 @@ times = [
         {'time':datetime(2020, 1, 1, 0, 30), 'role':"Conquest 6"}
     ],
     [
-        {'time':datetime(2020, 1, 1, 20, 55), 'role':"Guerrilla 1"}
+        {'time':datetime(2020, 1, 1, 21, 00), 'role':"Guerrilla 1"}
     ]
 ]
 
