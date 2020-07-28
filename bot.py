@@ -22,7 +22,7 @@ icon_img = "https://pht.qoo-static.com/sLUUkCD39IWR7sHHpjHlJlIm0ft6sCkMQB5aZc4Ay
 #if no base_rolename is given then emoji value will be the name of the role
 listeners = [
     {
-        'message_id': 737050303991382127,
+        'message_id': 737801499307933737,
         'base_rolename':"Guerrilla ",
         'emojis_allowed':[
             {'name':"1️⃣", 'value':"1"},
@@ -44,7 +44,7 @@ listeners = [
         ]
     },
     {
-        'message_id': 0,
+        'message_id': 737801506258157662,
         'base_rolename':"Conquest",
         'emojis_allowed':[
             {'name':"1️⃣", 'value':"1"},
@@ -66,7 +66,7 @@ listeners = [
         ]
     },
     {
-        'message_id': 0,
+        'message_id': 737801514864869397,
         'base_rolename':"",
         'emojis_allowed':[
             {'name':"1️⃣", 'value':"Colosseum"}
