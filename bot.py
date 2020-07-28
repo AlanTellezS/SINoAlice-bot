@@ -49,7 +49,10 @@ listeners = [
         'emojis_allowed':[
             {'name':"1️⃣", 'value':"1"},
             {'name':"2️⃣", 'value':"2"},
-            {'name':"3️⃣", 'value':"3"}
+            {'name':"3️⃣", 'value':"3"},
+            {'name':"4️⃣", 'value':"4"},
+            {'name':"5️⃣", 'value':"5"},
+            {'name':"6️⃣", 'value':"6"}
         ],
         'message': "If you want to get notified when Conquest goes live, use one or more of the reactions to this message.\n" +
             "The reactions relate to the following timeslots (UTC) of the Events:\n",
