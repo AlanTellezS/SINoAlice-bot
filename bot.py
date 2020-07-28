@@ -64,7 +64,6 @@ async def startReminders(channel):
     await channel.send("Reminders started")
     while True:
         time = datetime.utcnow()
-        print(datetime.minute)
         for t1 in times:
             for t2 in t1:
                 if (t2['time'].minute == time.minute and t2['time'].hour == time.hour):
