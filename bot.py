@@ -1,4 +1,5 @@
 import discord
+import os
 from common_embed import generic_embed
 from datetime import datetime
 from discord.ext import commands
@@ -21,6 +22,9 @@ times = [
         {'time':datetime(2020, 1, 1, 0, 30), 'role':"Conquest 4"},
         {'time':datetime(2020, 1, 1, 0, 30), 'role':"Conquest 5"},
         {'time':datetime(2020, 1, 1, 0, 30), 'role':"Conquest 6"}
+    ],
+    [
+        {'time':datetime(2020, 1, 1, 21, 50), 'role':"Guerrilla 1"}
     ]
 ]
 
@@ -130,4 +134,4 @@ async def start_reminders(context):
     channel = context.message.channel
     await startReminders(channel)
 
-client.run("NzMwODE0OTQzNjYxNjU0MDI2.Xwc-dA.LmydF_8OD12q04Tc4S69FgOuj7I")
+client.run(os.getenv('TOKEN'))
