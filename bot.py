@@ -91,7 +91,7 @@ async def startReminders(context):
                 if (t['time'].minute == time.minute and t['time'].hour == time.hour and t['time'].second == time.second):
                     role = discord.utils.find(lambda r : r.name == t['role'], guild.roles)
                     await context.message.channel.send(role.mention+" has started")
-                    await(0.9)
+                    await(2)
 
 @client.event
 async def on_ready():
