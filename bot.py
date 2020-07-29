@@ -4,14 +4,10 @@ import asyncio
 from enum import Enum
 from common_embed import generic_embed
 from datetime import datetime
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 client = commands.Bot(command_prefix = "$")
-
-class timers(Enum):
-    Guerrilla = 0
-    Conquest = 1
-    Colosseum = 2
+client.timer_manager
 
 #Image that can be added to embeds
 icon_img = "https://pht.qoo-static.com/sLUUkCD39IWR7sHHpjHlJlIm0ft6sCkMQB5aZc4AyLtFt44lEUdqso3nFUb4x-PFQw=w512"
@@ -91,7 +87,7 @@ async def startReminders(context):
                 if (t['time'].minute == time.minute and t['time'].hour == time.hour and t['time'].second == time.second):
                     role = discord.utils.find(lambda r : r.name == t['role'], guild.roles)
                     await context.message.channel.send(role.mention+" has started")
-                    await(2)
+                    await asyncio(2)
 
 @client.event
 async def on_ready():
