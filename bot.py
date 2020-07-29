@@ -74,9 +74,9 @@ listeners = [
     }
 ]
 
-async def startReminders(context):
+async def startReminders(channel):
     guild = client.guilds[0]
-    await context.message.channel.send("Reminders started")
+    await channel.send("Reminders started")
     while True:
         found = False
         time = datetime.utcnow()
@@ -85,13 +85,17 @@ async def startReminders(context):
             for t in listener['times']:
                 if (t['time'].minute == time.minute and t['time'].hour == time.hour and t['time'].second == time.second):
                     role = discord.utils.find(lambda r : r.name == t['role'], guild.roles)
-                    await context.message.channel.send(role.mention+" has started")
+                    await channel.send(role.mention+" has started")
                     await asyncio.sleep(2)
 
 @client.event
 async def on_ready():
     print("Ygdrasil bot started")
     print("--------------------")
+    for channel in client.guilds[0].channels:
+        if channel.name == "bot":
+            botChannel = channel
+    await startReminders(channel)
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -142,10 +146,5 @@ async def hello(message):
     while True:
         await channel.send("Hello")
         await asyncio.sleep(60)
-
-@client.command()
-async def start_reminders(context):
-    context = context
-    await startReminders(context)
 
 client.run(os.getenv('TOKEN'))
