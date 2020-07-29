@@ -4,10 +4,9 @@ import asyncio
 from enum import Enum
 from common_embed import generic_embed
 from datetime import datetime
-from discord.ext import commands, tasks
+from discord.ext import commands
 
 client = commands.Bot(command_prefix = "$")
-client.timer_manager
 
 #Image that can be added to embeds
 icon_img = "https://pht.qoo-static.com/sLUUkCD39IWR7sHHpjHlJlIm0ft6sCkMQB5aZc4AyLtFt44lEUdqso3nFUb4x-PFQw=w512"
