@@ -100,7 +100,7 @@ async def on_ready():
 
 @client.event
 async def on_raw_reaction_add(payload):
-    print(emoji)
+    print(payload.emoji.name)
     for listener in listeners:
         if listener['message_id'] == payload.message_id:
             for emoji in listener['emojis_allowed']:
