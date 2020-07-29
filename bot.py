@@ -100,6 +100,7 @@ async def on_ready():
 
 @client.event
 async def on_raw_reaction_add(payload):
+    print(emoji)
     for listener in listeners:
         if listener['message_id'] == payload.message_id:
             for emoji in listener['emojis_allowed']:
@@ -109,9 +110,11 @@ async def on_raw_reaction_add(payload):
                     role = discord.utils.find(lambda r : r.name == rolename, guild.roles)
                     member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
                     await member.add_roles(role)
+                    print("Role added")
 
 @client.event
 async def on_raw_reaction_remove(payload):
+    print(emoji)
     for listener in listeners:
         if listener['message_id'] == payload.message_id:
             for emoji in listener['emojis_allowed']:
@@ -121,6 +124,7 @@ async def on_raw_reaction_remove(payload):
                     role = discord.utils.find(lambda r : r.name == rolename, guild.roles)
                     member = discord.utils.find(lambda m : m.id == payload.user_id, guild.members)
                     await member.remove_roles(role)
+                    print("Role added")
 
 @client.command()
 async def send_listeners_message(context):
