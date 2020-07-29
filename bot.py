@@ -139,12 +139,6 @@ async def send_listeners_message(context):
 
 @client.command()
 async def hello(message):
-    """
-    guild = client.guilds[0]
-    role = discord.utils.find(lambda r : r.name == "Guerrilla 1", guild.roles)"""
-    channel = message.channel
-    while True:
-        await channel.send("Hello")
-        await asyncio.sleep(60)
+    await channel.send("Hello")
 
 client.run(os.getenv('TOKEN'))
