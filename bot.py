@@ -76,7 +76,7 @@ listeners = [
 
 async def startReminders(channel):
     guild = client.guilds[0]
-    await channel.send("Reminders started")
+    print("Remind started")
     while True:
         found = False
         time = datetime.utcnow()
@@ -139,6 +139,6 @@ async def send_listeners_message(context):
 
 @client.command()
 async def hello(message):
-    await channel.send("Hello")
+    await message.channel.send("Hello")
 
 client.run(os.getenv('TOKEN'))
