@@ -83,8 +83,10 @@ async def startReminders(context):
     guild = client.guilds[0]
     await context.message.channel.send("Reminders started")
     while True:
+        found = False
         time = datetime.utcnow()
         for listener in listeners:
+            if (found): break
             for t in listener['times']:
                 if (t['time'].minute == time.minute and t['time'].hour == time.hour):
                     role = discord.utils.find(lambda r : r.name == t['role'], guild.roles)
@@ -138,7 +140,7 @@ async def hello(message):
     guild = client.guilds[0]
     role = discord.utils.find(lambda r : r.name == "Guerrilla 1", guild.roles)"""
     channel = message.channel
-    for i in range (0,3):
+    while True:
         await channel.send("Hello")
         await asyncio.sleep(2)
 
