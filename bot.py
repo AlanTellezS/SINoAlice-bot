@@ -35,12 +35,12 @@ listeners = [
         'message': "If you want to get notified when Guerilla goes live, use one or more of the reactions to this message.n" +
             "The reactions relate to the following timeslots (UTC) of the Events:\n",
         'times':[
-            {'time':datetime(2020, 1, 1, 0, 30), 'role':"Guerrilla 1"},
-            {'time':datetime(2020, 1, 1, 2, 30), 'role':"Guerrilla 2"},
-            {'time':datetime(2020, 1, 1, 11, 30), 'role':"Guerrilla 3"},
-            {'time':datetime(2020, 1, 1, 18, 30), 'role':"Guerrilla 4"},
-            {'time':datetime(2020, 1, 1, 20, 30), 'role':"Guerrilla 5"},
-            {'time':datetime(2020, 1, 1, 22, 30), 'role':"Guerrilla 6"}
+            {'time':datetime(2020, 1, 1, 0, 30, 0), 'role':"Guerrilla 1"},
+            {'time':datetime(2020, 1, 1, 2, 30, 0), 'role':"Guerrilla 2"},
+            {'time':datetime(2020, 1, 1, 11, 30, 0), 'role':"Guerrilla 3"},
+            {'time':datetime(2020, 1, 1, 18, 30, 0), 'role':"Guerrilla 4"},
+            {'time':datetime(2020, 1, 1, 20, 30, 0), 'role':"Guerrilla 5"},
+            {'time':datetime(2020, 1, 1, 22, 30, 0), 'role':"Guerrilla 6"}
         ]
     },
     {
@@ -57,12 +57,12 @@ listeners = [
         'message': "If you want to get notified when Conquest goes live, use one or more of the reactions to this message.\n" +
             "The reactions relate to the following timeslots (UTC) of the Events:\n",
         'times':[ 
-            {'time':datetime(2020, 1, 1, 1, 30), 'role':"Conquest 1"},
-            {'time':datetime(2020, 1, 1, 3, 30), 'role':"Conquest 2"},
-            {'time':datetime(2020, 1, 1, 12, 0), 'role':"Conquest 3"},
-            {'time':datetime(2020, 1, 1, 19, 30), 'role':"Conquest 4"},
-            {'time':datetime(2020, 1, 1, 21, 30), 'role':"Conquest 5"},
-            {'time':datetime(2020, 1, 1, 23, 30), 'role':"Conquest 6"}
+            {'time':datetime(2020, 1, 1, 1, 30, 0), 'role':"Conquest 1"},
+            {'time':datetime(2020, 1, 1, 3, 30, 0), 'role':"Conquest 2"},
+            {'time':datetime(2020, 1, 1, 12, 0, 0), 'role':"Conquest 3"},
+            {'time':datetime(2020, 1, 1, 19, 30, 0), 'role':"Conquest 4"},
+            {'time':datetime(2020, 1, 1, 21, 30, 0), 'role':"Conquest 5"},
+            {'time':datetime(2020, 1, 1, 23, 30, 0), 'role':"Conquest 6"}
         ]
     },
     {
@@ -74,7 +74,7 @@ listeners = [
         'message': "If you want to get notified when Colosseum goes live, use one or more of the reactions to this message.\n"+
         "The reactions relate to the following timeslots (UTC) of the Events:\n",
         'times':[
-            {'time':datetime(2020, 1, 1, 18, 50, 0), 'role':"Colosseum"}
+            {'time':datetime(2020, 1, 1, 18, 50, 0, 0), 'role':"Colosseum"}
         ]
     }
 ]
@@ -88,10 +88,10 @@ async def startReminders(context):
         for listener in listeners:
             if (found): break
             for t in listener['times']:
-                if (t['time'].minute == time.minute and t['time'].hour == time.hour):
+                if (t['time'].minute == time.minute and t['time'].hour == time.hour and t['time'].second == time.second):
                     role = discord.utils.find(lambda r : r.name == t['role'], guild.roles)
                     await context.message.channel.send(role.mention+" has started")
-                    await asyncio.sleep(2)
+                    await(0.9)
 
 @client.event
 async def on_ready():
@@ -142,7 +142,7 @@ async def hello(message):
     channel = message.channel
     while True:
         await channel.send("Hello")
-        await asyncio.sleep(2)
+        await asyncio.sleep(60)
 
 @client.command()
 async def start_reminders(context):
