@@ -198,7 +198,7 @@ async def list_quotes(context):
     cursor.execute(query)
     result = cursor.fetchall()
     for name, user in result:
-        msg = msg + f'{name} by {user}'
+        msg = msg + f'{name} by {user}\n'
     await channel.send(embed = generic_embed("List of quotes", msg, "", ""))
 
 @client.command()
