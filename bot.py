@@ -186,7 +186,7 @@ async def delete_quote(context, quotename=None):
         query = f'delete from quotes where name = "{quotename}" and user = "{context.author.name}"'
         cursor.execute(query)
         if cursor.rowcount == 0: await context.send(f"Quote {quotename} by user {context.author.name} doesn't exists")
-        else: context.send(f'Quote deleted')
+        else: await context.send(f'Quote deleted')
 
 @client.command(aliases = ["lq", "listquotes", "lquotes", "qlist"])
 async def list_quotes(context):
