@@ -173,9 +173,9 @@ async def quote(context, quotename=None):
         cursor.execute(query)
         result = cursor.fetchall()
         if (len(result)==0):
-            await channel.send(embed = generic_embed("Error", f"Quote {quotename} not found","",""))
+            await channel.send( f"Quote {quotename} not found")
         else:
-            await channel.send(embed = generic_embed(quotename, result[0][1],"",""))
+            await channel.send(result[0][1])
 
 @client.command(aliases = ["lq", "listquotes", "lquotes", "qlist"])
 async def list_quotes(context):
