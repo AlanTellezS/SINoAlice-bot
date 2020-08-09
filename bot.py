@@ -183,7 +183,7 @@ async def delete_quote(context, quotename=None):
     else:
         con = mysql.connect(user = db['user'], password = db['password'], host = db['host'], database = db['dbName'], port = db['port'])
         cursor = con.cursor()
-        query = f'delete from quotes where name = "{quotename}"" and user = "{context.author.name}""'
+        query = f'delete from quotes where name = "{quotename}"" and user = "{context.author.name}"'
         cursor.execute(query)
         if cursor.rowcount() == 0: await context.send(f"Quote {quotename} by user {context.author.name} doesn't exists")
         else: context.send(f'Quote deleted')
