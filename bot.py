@@ -163,7 +163,7 @@ async def createq(context, quotename=None, quote=None):
         await context.send(f"Quote {quotename} added!")
 
 @client.command(aliases = ["q"])
-async def quote(context, quotename=None):
+async def quote(context, *, quotename=None):
     if quotename == None: await context.send("No quote name given")
     else:
         channel = context.channel
