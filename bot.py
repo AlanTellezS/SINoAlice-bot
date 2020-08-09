@@ -5,8 +5,17 @@ from enum import Enum
 from common_embed import generic_embed
 from datetime import datetime
 from discord.ext import commands
+import mysql.connector as mysql
 
 client = commands.Bot(command_prefix = "$")
+
+db = {
+    'user': os.getenv('db_user'),
+    'dbName': os.getenv('db_name'),
+    'password': os.getenv('db_pass'),
+    'host': os.getenv('db_host'),
+    'port': os.getenv('db_port')
+}
 
 #Image that can be added to embeds
 icon_img = "https://pht.qoo-static.com/sLUUkCD39IWR7sHHpjHlJlIm0ft6sCkMQB5aZc4AyLtFt44lEUdqso3nFUb4x-PFQw=w512"
@@ -140,8 +149,50 @@ async def send_listeners_message(context):
         for emoji in listener['emojis_allowed']:
             await message.add_reaction(emoji["name"])
 
+@client.command(aliases = ["cq", "createq", "createquote", "cquote"])
+async def createq(context, quotename=None, quote=None):
+    if(quotename==None): context.send("No arguments given")
+    elif(quote==None): context.send("No quote given")
+    else:
+        con = mysql.connect(user = db['user'], password = db['password'], host = db['host'], database = db['dbName'], port = db['port'])
+        query = f'INSERT INTO quotes(name, quote, user) VALUES ("{quotename}","{quote}","{context.author.name}")'
+        cursor = con.cursor()
+        cursor.execute(query)
+        con.commit()
+        con.close()
+        await context.send(f"Quote {quotename} added!")
+
+@client.command(aliases = ["q", "quote"])
+async def quote(context, quotename=None):
+    if quotename == None: await context.send("No quote name given")
+    else:
+        channel = context.channel
+        con = mysql.connect(user = db['user'], password = db['password'], host = db['host'], database = db['dbName'], port = db['port'])
+        cursor = con.cursor()
+        query = f'select name, quote from quotes where name = "{quotename}"'
+        cursor.execute(query)
+        result = cursor.fetchall()
+        if (len(result)==0):
+            await channel.send(embed = generic_embed("Error", f"Quote {quotename} not found","",""))
+        else:
+            await channel.send(embed = generic_embed(quotename, +result[0][1],"",""))
+
+@client.command(aliases = ["lq", "listquotes", "lquotes", "qlist"])
+async def list_quotes(context):
+    channel = context.channel
+    msg = ""
+    con = mysql.connect(user = db['user'], password = db['password'], host = db['host'], database = db['dbName'], port = db['port'])
+    cursor = con.cursor()
+    query = f'select name, user from quotes'
+    cursor.execute(query)
+    result = cursor.fetchall()
+    for name, user in result:
+        msg = msg + f'{name} by {user}'
+    await channel.send(embed = generic_embed("List of quotes", msg, "", ""))
+
 @client.command()
-async def hello(message):
-    await message.channel.send("Hello")
+async def t(message,arg1,arg2):
+    print (f'arg1 {arg1}')
+    print (f'arg2 {arg2}')
 
 client.run(os.getenv('TOKEN'))
