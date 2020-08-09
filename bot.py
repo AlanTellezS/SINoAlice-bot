@@ -176,6 +176,7 @@ async def quote(context, quotename=None):
             await channel.send( f"Quote {quotename} not found")
         else:
             await channel.send(result[0][1])
+        con.close()
 
 @client.command(aliases = ["dq"])
 async def delete_quote(context, quotename=None):
@@ -186,7 +187,10 @@ async def delete_quote(context, quotename=None):
         query = f'delete from quotes where name = "{quotename}" and user = "{context.author.name}"'
         cursor.execute(query)
         if cursor.rowcount == 0: await context.send(f"Quote {quotename} by user {context.author.name} doesn't exists")
-        else: await context.send(f'Quote deleted')
+        else: 
+            con.commit()
+            con.close()
+            await context.send(f'Quote deleted')
 
 @client.command(aliases = ["lq", "listquotes", "lquotes", "qlist"])
 async def list_quotes(context):
