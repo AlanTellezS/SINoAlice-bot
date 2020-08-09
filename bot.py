@@ -177,6 +177,17 @@ async def quote(context, quotename=None):
         else:
             await channel.send(result[0][1])
 
+@client.command(aliases = ["dq"])
+async def delete_quote(context, quotename=None):
+    if quotename == None: await context.send("No quote name given")
+    else:
+        con = mysql.connect(user = db['user'], password = db['password'], host = db['host'], database = db['dbName'], port = db['port'])
+        cursor = con.cursor()
+        query = f'delete from quotes where name = {quotename} and user = {context.author.name}'
+        cursor.execute(query)
+        if cursor.rowcount() == 0: await context.send(f"Quote {quotename} by user {context.author.name} doesn't exists")
+        else: context.send(f'Quote deleted')
+
 @client.command(aliases = ["lq", "listquotes", "lquotes", "qlist"])
 async def list_quotes(context):
     channel = context.channel
