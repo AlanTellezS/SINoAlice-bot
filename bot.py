@@ -7,7 +7,7 @@ from datetime import datetime
 from discord.ext import commands
 import mysql.connector as mysql
 
-client = commands.Bot(command_prefix = "$")
+client = commands.Bot(command_prefix = "+")
 
 db = {
     'user': os.getenv('db_user'),
