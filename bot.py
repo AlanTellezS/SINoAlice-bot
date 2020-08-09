@@ -151,8 +151,8 @@ async def send_listeners_message(context):
 
 @client.command(aliases = ["cq", "createquote", "cquote"])
 async def createq(context, quotename=None, quote=None):
-    if(quotename==None): context.send("No arguments given")
-    elif(quote==None): context.send("No quote given")
+    if(quotename==None): await context.send("No arguments given")
+    elif(quote==None): await context.send("No quote given")
     else:
         con = mysql.connect(user = db['user'], password = db['password'], host = db['host'], database = db['dbName'], port = db['port'])
         query = f'INSERT INTO quotes(name, quote, user) VALUES ("{quotename}","{quote}","{context.author.name}")'
