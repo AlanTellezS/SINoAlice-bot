@@ -149,8 +149,8 @@ async def send_listeners_message(context):
         for emoji in listener['emojis_allowed']:
             await message.add_reaction(emoji["name"])
 
-@client.command(aliases = ["cq", "createquote", "cquote"])
-async def createq(context, quotename=None, quote=None):
+@client.command(aliases = ["cq", "createquote", "cquote", "createq"])
+async def create_quote(context, quotename=None, quote=None):
     if(quotename==None): await context.send("No arguments given")
     elif(quote==None): await context.send("No quote given")
     else:
