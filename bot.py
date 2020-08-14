@@ -156,11 +156,11 @@ async def create_quote(context, quotename=None, quote=None):
     else:
         con = mysql.connect(user = db['user'], password = db['password'], host = db['host'], database = db['dbName'], port = db['port'])
         query = f'select name, quote from quotes where name = "{quotename}"'
+        cursor = con.cursor()
         cursor.execute(query)
         result = cursor.fetchall()
         if (len(result)==0):
             query = f'INSERT INTO quotes(name, quote, user) VALUES ("{quotename}","{quote}","{context.author.name}")'
-            cursor = con.cursor()
             cursor.execute(query)
             con.commit()
             await context.send(f"Quote {quotename} added!")
