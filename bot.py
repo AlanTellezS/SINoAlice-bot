@@ -155,12 +155,18 @@ async def create_quote(context, quotename=None, quote=None):
     elif(quote==None): await context.send("No quote given")
     else:
         con = mysql.connect(user = db['user'], password = db['password'], host = db['host'], database = db['dbName'], port = db['port'])
-        query = f'INSERT INTO quotes(name, quote, user) VALUES ("{quotename}","{quote}","{context.author.name}")'
-        cursor = con.cursor()
+        query = f'select name, quote from quotes where name = "{quotename}"'
         cursor.execute(query)
-        con.commit()
+        result = cursor.fetchall()
+        if (len(result)==0):
+            query = f'INSERT INTO quotes(name, quote, user) VALUES ("{quotename}","{quote}","{context.author.name}")'
+            cursor = con.cursor()
+            cursor.execute(query)
+            con.commit()
+            await context.send(f"Quote {quotename} added!")
+        else:
+            await channel.send(f'Quote {quotename} has already been added')
         con.close()
-        await context.send(f"Quote {quotename} added!")
 
 @client.command(aliases = ["q"])
 async def quote(context, *, quotename=None):
