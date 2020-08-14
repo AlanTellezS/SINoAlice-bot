@@ -165,7 +165,7 @@ async def create_quote(context, quotename=None, quote=None):
             con.commit()
             await context.send(f"Quote {quotename} added!")
         else:
-            await channel.send(f'Quote {quotename} has already been added')
+            await context.send(f'Quote {quotename} has already been added')
         con.close()
 
 @client.command(aliases = ["q"])
